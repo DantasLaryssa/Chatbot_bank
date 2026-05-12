@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <link rel="icon" type="image/x-icon" href="{{ url_for('static', filename='css/icon.png') }}?v=1">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Banco Digital — Chatbot com ML</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}?v=1">
+</head>
+<body>
+<div id="app">
+
+  <!-- Sidebar -->
+  <div id="sidebar">
+    <div id="sidebar-header">
+      <h2>Banco Digital</h2>
+      <p>Meu Cartão</p>
+    </div>
+
+    <div id="quick-cmds">
+      <p class="section-label">Minha conta</p>
+      <button class="cmd-btn locked" onclick="sendCmd('ver minha conta')"   disabled>
+        <span class="cmd-icon">👤</span> Minha conta
+      </button>
+      <button class="cmd-btn locked" onclick="sendCmd('minha fatura')"      disabled>
+        <span class="cmd-icon">📄</span> Minha fatura
+      </button>
+
+      <p class="section-label" style="margin-top:16px">Cartão</p>
+      <button class="cmd-btn locked" onclick="sendCmd('cartão')" disabled>
+        <span class="cmd-icon">💳</span> Ver cartão
+      </button>
+      <button class="cmd-btn locked" onclick="sendCmd('bloquear meu cartão')"   disabled>
+        <span class="cmd-icon">🔒</span> Bloquear cartão
+      </button>
+      <button class="cmd-btn locked" onclick="sendCmd('desbloquear meu cartão')" disabled>
+        <span class="cmd-icon">🔓</span> Desbloquear cartão
+      </button>
+      <button class="cmd-btn locked" onclick="sendCmd('fazer uma compra')"  disabled>
+        <span class="cmd-icon">🛒</span> Simular compra
+      </button>
+
+      <p class="section-label" style="margin-top:16px">Meus dados</p>
+      <button class="cmd-btn locked" onclick="sendCmd('atualizar meus dados')" disabled>
+        <span class="cmd-icon">✏️</span> Atualizar dados
+      </button>
+      <button class="cmd-btn locked" onclick="sendCmd('encerrar minha conta')" disabled>
+        <span class="cmd-icon">🗑️</span> Encerrar conta
+      </button>
+
+      <p class="section-label" style="margin-top:16px">Ajuda</p>
+      <button class="cmd-btn" onclick="sendCmd('ajuda')">
+        <span class="cmd-icon">❓</span> Ver comandos
+      </button>
+    </div>
+
+    <div id="user-info">
+      <strong id="sidebar-nome">Não identificado</strong>
+      <span   id="sidebar-cpf">—</span>
+      <button id="btn-sair" onclick="sair()" style="display:none">Sair da conta</button>
+    </div>
+  </div>
+
+  <!-- Main -->
+  <div id="main">
+    <div id="topbar">
+      <div class="status-dot"></div>
+      <h3>Assistente Bancário com ML</h3>
+      <span>CountVectorizer + LogisticRegression</span>
+    </div>
+
+    <div id="chat-area"></div>
+
+    <div id="input-area">
+      <input
+        id="msg-input"
+        placeholder="Digite um comando, nome ou CPF..."
+        onkeydown="if(event.key==='Enter') enviar()"
+        autocomplete="off"
+      />
+      <button id="send-btn" onclick="enviar()">Enviar</button>
+    </div>
+  </div>
+
+</div>
+
+<script src="{{ url_for('static', filename='JavaScript/script.js') }}?v=1">
+</script>
+</body>
+</html>
